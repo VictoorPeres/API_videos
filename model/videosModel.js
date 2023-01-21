@@ -15,11 +15,13 @@ class Videos{
         
         connection.query(sql, (error, result) => {
             const resultObj = result[0];
-            
+            const cont = result.length;
             if(error){
                 res.status(400).json(error);
-            }else{
+            }else if(cont){
                 res.status(200).json(resultObj);
+            }else{
+                res.status(400).json('Não encontrado.')
             }
         })
     }
