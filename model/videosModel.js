@@ -25,5 +25,39 @@ class Videos{
             }
         })
     }
+    create(dados, res){
+            
+        const validaTitulo = dados.titulo.length >= 10;
+        const validaDescricao = dados.descricao.length >= 10;
+
+        const validacoes = [
+            {
+                nome: 'titulo',
+                valida: validaTitulo,
+                mensagem: 'O titulo deve ter dez ou mais caracteres'
+            },
+            {
+                nome: 'descricao',
+                valida: validaDescricao,
+                mensagem: 'A descrição deve ter dez ou mais caracteres'
+            }
+        ];
+
+        const erros = validacoes.filter(campo => !campo.valida);
+        const errosExistem = erros.length;
+
+        if( errosExistem){
+            res.status(400).json(erros)
+        }else{
+            const sql = 'INSERT INTO tbVideos SET ?'
+            connection.query(sql, dados, (error, result) => {
+                if(error){
+                    res.status(400).json(error);
+                }else{
+                    res.status(200).json(dados);
+                }
+            })
+        }
+    }
 }
 module.exports = new Videos;
