@@ -13,5 +13,11 @@ module.exports = app => {
     app.post('/video', (req, res) => {
         Videos.create(req.body, res);
     })
+
+    app.put('/video/:id', (req, res) => {
+        const id = parseInt(req.params.id);
+        const dadosVideo = req.body;
+        Videos.update(id, dadosVideo, res);
+    })
 }
 
