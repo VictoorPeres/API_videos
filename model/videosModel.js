@@ -59,5 +59,17 @@ class Videos{
             })
         }
     }
+    update(id, dadosVideo, res){
+        const sql = 'UPDATE tbVideos SET ? WHERE cd_video = ?';
+        connection.query(sql, [dadosVideo, id], (error, result) => {
+            
+            if(error){
+                res.status(400).json(error);
+            }
+            else{
+                res.status(200).json(dadosVideo);
+            }
+        });
+    }
 }
 module.exports = new Videos;
