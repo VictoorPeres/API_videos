@@ -29,6 +29,7 @@ class Videos{
             
         const validaTitulo = dados.titulo.length >= 10;
         const validaDescricao = dados.descricao.length >= 10;
+        const validaURL = dados.url.length > 20;
 
         const validacoes = [
             {
@@ -40,6 +41,11 @@ class Videos{
                 nome: 'descricao',
                 valida: validaDescricao,
                 mensagem: 'A descrição deve ter dez ou mais caracteres'
+            },
+            {
+                nome: 'url',
+                valida: validaURL,
+                mensagem: 'Digite uma url válida'
             }
         ];
 
