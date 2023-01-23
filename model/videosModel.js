@@ -71,5 +71,16 @@ class Videos{
             }
         });
     }
+    delete(id, res){
+        const sql = 'DELETE FROM tbVideos WHERE cd_video = ?';
+        connection.query(sql, id, (error, result) => {
+            if(error){
+                res.status(400).json(error);
+            }
+            else{
+                res.status(200).json('Exclusão realizada.');
+            }
+        })
+    }
 }
 module.exports = new Videos;
