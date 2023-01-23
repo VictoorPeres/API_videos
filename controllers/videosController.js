@@ -19,5 +19,10 @@ module.exports = app => {
         const dadosVideo = req.body;
         Videos.update(id, dadosVideo, res);
     })
+
+    app.delete('/video/:id', (req, res) => {
+        const id = parseInt(req.params.id);
+        Videos.delete(id, res);
+    })
 }
 
