@@ -21,7 +21,7 @@ class Videos{
             }else if(cont){
                 res.status(200).json(resultObj);
             }else{
-                res.status(400).json('Não encontrado.')
+                res.status(400).json('Vídeo não encontrado.')
             }
         })
     }
