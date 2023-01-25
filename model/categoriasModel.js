@@ -57,6 +57,16 @@ class Categoria{
             })
         }
     }
+    update(cd_categoria, dadosCategoria, res){
+        const sql = 'UPDATE tbCategorias SET ? WHERE cd_categoria = ?';
+        connection.query(sql, [dadosCategoria, cd_categoria], (error, result) => {
+            if(error){
+                res.status(400).json('Não foi possível realizar a alteração');
+            }else{
+                res.status(200).json(dadosCategoria);
+            }
+        })
+    }
 }
 
 module.exports = new Categoria;
