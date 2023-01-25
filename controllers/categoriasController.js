@@ -7,4 +7,8 @@ module.exports = app => {
         const id = parseInt(req.params.id);
         Categoria.listId(id, res);
     });
+    app.post('/categoria', (req, res) => {
+        const dadosCategoria = req.body;
+        Categoria.create(dadosCategoria, res);
+    })
 }
