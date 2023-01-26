@@ -25,6 +25,18 @@ class Videos{
             }
         })
     }
+    listVideoIdCategoria(cd_categoria, res){
+        const sql = 'SELECT tbVideos.cd_video, tbVideos.titulo, tbVideos.descricao, tbVideos.url, tbCategorias.titulo as "nm_categoria" FROM tbVideos INNER JOIN tbCategorias ON tbVideos.cd_categoria = tbCategorias.cd_categoria WHERE tbVideos.cd_categoria = ?';
+        connection.query(sql, cd_categoria, (error, result) => {
+            if(error){
+                res.status(400).json(error);
+            }else if(result.length){
+                res.status(200).json(result);
+            }else{
+                res.status(400).json('Não existem vídeos cadastrados para essa categoria');
+            }
+        })
+    }
     create(dados, res){
             
         const validaTitulo = dados.titulo.length >= 10;
