@@ -65,9 +65,9 @@ class Videos{
             })
         }
     }
-    update(id, dadosVideo, res){
+    update(cd_video, dadosVideo, res){
         const sql = 'UPDATE tbVideos SET ? WHERE cd_video = ?';
-        connection.query(sql, [dadosVideo, id], (error, result) => {
+        connection.query(sql, [dadosVideo, cd_video], (error, result) => {
             
             if(error){
                 res.status(400).json(error);
@@ -77,9 +77,9 @@ class Videos{
             }
         });
     }
-    delete(id, res){
+    delete(cd_video, res){
         const sql = 'DELETE FROM tbVideos WHERE cd_video = ?';
-        connection.query(sql, id, (error, result) => {
+        connection.query(sql, cd_video, (error, result) => {
             if(error){
                 res.status(400).json(error);
             }
