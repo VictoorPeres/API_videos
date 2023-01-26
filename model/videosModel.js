@@ -83,8 +83,10 @@ class Videos{
             if(error){
                 res.status(400).json(error);
             }
-            else{
+            else if(result.affectedRows ===1){
                 res.status(200).json('Exclusão realizada.');
+            }else{
+                res.status(400).json('Vídeo não encontrado');
             }
         })
     }
