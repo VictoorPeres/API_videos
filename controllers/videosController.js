@@ -10,6 +10,11 @@ module.exports = app => {
         Videos.listId(cd_video, res);
     })
 
+    app.post('/video', (req, res) => {
+        const valor = req.query.search;
+        Videos.search(valor, res);
+    });
+
     app.get('/categoria/:id/video', (req, res) => {
         const cd_categoria = parseInt(req.params.id);
         Videos.listVideoIdCategoria(cd_categoria, res);
