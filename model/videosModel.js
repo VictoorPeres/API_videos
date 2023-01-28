@@ -37,6 +37,19 @@ class Videos{
             }
         })
     }
+    search(valor, res){
+        const sql = `SELECT * FROM tbVideos WHERE titulo LIKE '%${valor}%'`;
+        connection.query(sql, (error, result) => {
+            if(error){
+                res.status(400).json(error);
+            }
+            else if(result.length){
+                res.status(200).json(result);
+            }else{
+                res.status(400).json('Vídeo não encontrado');
+            }
+        })
+    }
     create(dados, res){
             
         const validaTitulo = dados.titulo.length >= 10;
