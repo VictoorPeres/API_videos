@@ -81,13 +81,25 @@ class Videos{
             res.status(400).json(erros)
         }else{
             const sql = 'INSERT INTO tbVideos SET ?'
-            connection.query(sql, dados, (error, result) => {
-                if(error){
-                    res.status(400).json(error);
-                }else{
-                    res.status(200).json(dados);
-                }
-            })
+            if(dados.cd_categoria.length){
+                connection.query(sql, dados, (error, result) => {
+                    if(error){
+                        res.status(400).json(error);
+                    }else{
+                        res.status(200).json(dados);
+                    }
+                })
+            }else{
+                dados.cd_categoria = '1';
+                connection.query(sql, dados, (error, result) => {
+                    if(error){
+                        res.status(400).json(error);
+                    }else{
+                        res.status(200).json(dados);
+                    }
+                })
+            }
+            
         }
     }
     update(cd_video, dadosVideo, res){

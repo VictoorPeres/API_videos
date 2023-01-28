@@ -10,7 +10,7 @@ module.exports = app => {
         Videos.listId(cd_video, res);
     })
 
-    app.post('/video', (req, res) => {
+    app.get('/video', (req, res) => {
         const valor = req.query.search;
         Videos.search(valor, res);
     });
