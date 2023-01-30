@@ -1,7 +1,11 @@
 const connection = require('../infrastructure/connection')
 class Videos{
-    list(res){
-        const sql = 'SELECT * FROM tbVideos';
+    list(page, res){
+        if(page == ''){
+            page = 1;
+        }
+        let count = (page*5) - 5;
+        const sql = `SELECT * FROM tbVideos LIMIT 5 OFFSET ${count}`;
         connection.query(sql, (error, result) => {
             if(error){
                 res.status(400).json(error);
