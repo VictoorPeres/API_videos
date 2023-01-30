@@ -2,7 +2,8 @@ const Videos = require('../model/videosModel');
 
 module.exports = app => {
     app.get('/videos', (req, res) => {
-    Videos.list(res);        
+    const page = parseInt(req.query.page);
+    Videos.list(page, res);        
     });
 
     app.get('/video/:id', (req, res) => {
